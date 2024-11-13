@@ -1,0 +1,197 @@
+
+        body {
+            background-color: #fce9d7; /* Background of the whole page */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns for the cards */
+            grid-gap: 20px; /* Adds space between the cards */
+            padding: 20px;
+            height: 100%; /* Ensure the container takes up the full height of its parent */
+            width: 80%; /* Adjust this value to increase or decrease width */
+            margin: 0 auto; /* Centers the container on the page */
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px; /* Adjust to add space between the logo and the cards */
+        }
+        
+        .amethyst-logo {
+            width: 150px; /* Adjust the size as needed */
+            height: auto;
+            mix-blend-mode: multiply; /* Blend the image with the background */
+            opacity: 0.8; /* Optional: Make the image semi-transparent */
+        }
+        
+        .amethyst-logo:hover + h1 {
+            color: #a020f0; /* Change color on logo hover */
+            font-family: "Tan new york";
+        }
+        
+        h1 {
+            animation: colorChange 4s infinite; /* Add color change animation */
+        }
+        
+        @keyframes colorChange {
+            0% { color: #a020f0; }  /* Start with amethyst purple */
+            25% { color: #FF7F50; } /* Coral */
+            50% { color: #FFD700; } /* Gold */
+            75% { color: #40E0D0; } /* Turquoise */
+            100% { color: #a020f0; } /* Back to amethyst purple */
+        }
+        
+        
+        .card, .team-updates {
+            height: 300px; /* Set a fixed height for all cards */
+            background-color: #d8eafd;
+            border-radius: 15px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Keeps content aligned at the bottom */
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Same box-shadow for all cards */
+        }
+        
+        /* Modify team-updates specifically */
+        .team-updates {
+            grid-column: span 1; /* Now it takes up the same space as the other cards */
+            color: #b08c4f;
+            font-weight: bold;
+            text-align: center;
+            margin-top: auto; /* This will push it towards the bottom of the grid cell */
+        }
+    
+
+        .team-updates img {
+            width: 30px;
+            position: top;
+            top: 10px;
+            left: 30px;
+        }
+
+        .card {
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .card img {
+            width: 100px; /* Adjust the size of the logo */
+            height: auto;
+            mix-blend-mode: multiply; /* Blend the image with the background */
+            opacity: 0.8; /* Optional: Make the image semi-transparent */
+        }
+        
+
+        .purple-card {
+            background-color: #d8baf7;
+        }
+
+        .gold-card {
+            background-color: #ddbb6b;
+        }
+
+        .orange-card {
+            background-color: #ff6f3c;
+        }
+
+        .light-blue-card {
+            background-color: #d8eafd;
+        }
+
+        .beige-card {
+            background-color: #f4d9b3;
+        }
+
+        .card h2 {
+            font-family: "Tan new york";
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            list-style-type: circle; /* Use bullets */
+            padding-left: 20px;    /* Space for bullets */
+            
+        }
+        
+        .card ul li {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        
+        .card ul li::before {
+            content: '';
+            position: absolute;
+            left: -10px; /* Adjust to align with bullet */
+            top: 76%;
+            transform: translateY(-50%);
+            border-bottom: 2px solid white; /* The line */
+            width: 90%; /* Adjust the width of the line */
+        }
+        
+        .card ul li .icon {
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 65px; /* Space between line and trash icon */
+            position: relative;
+            z-index: 1; /* Ensures the trash can is visible on top */
+        }
+        
+        .plus-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .card .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 20px;
+        }
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em; /* Adjust as needed */
+            padding: 0;
+        }
+        
+        .icon-btn:hover {
+            color: red; /* Change icon color on hover */
+        }
+        .task-list {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .completed .task-name {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        
+        .delete-task-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: red;
+        }
+        
+        
+
+    
