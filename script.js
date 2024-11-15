@@ -1,43 +1,83 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all the plus icons
-    const plusIcons = document.querySelectorAll('.plus-icon');
+// Add JavaScript code for your web site here and call it from index.html.
+// Assuming you have a list of schedules
+const schedules = [
+    { busNumber: '101', route: 'A to B', departure: '08:00', arrival: '10:00' },
+    { busNumber: '102', route: 'B to C', departure: '09:00', arrival: '11:00' },
+    // Add more schedules
+];
+
+function displaySchedule() {
+    const tableBody = document.querySelector("#scheduleTable tbody");
+    schedules.forEach(schedule => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${schedule.busNumber}</td><td>${schedule.route}</td><td>${schedule.departure}</td><td>${schedule.arrival}</td>`;
+        tableBody.appendChild(row);
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", displaySchedule);
+
+
+function handleBooking(event) {
+    event.preventDefault();
     
-    // Add click event listener to each plus icon
-    plusIcons.forEach((plusIcon) => {
-        plusIcon.addEventListener('click', () => {
-            const card = plusIcon.closest('.card'); // Get the card where the plus icon was clicked
-            const ul = card.querySelector('ul');    // Get the ul element in that card
+    const busNumber = document.getElementById("bus-number").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
 
-            // Prompt the user for the task text
-            const taskText = prompt('Enter the new task:');
-            
-            if (taskText) {
-                // Create a new list item for the task
-                const newLi = document.createElement('li');
-                newLi.innerHTML = `
-                    <span>${taskText}</span> 
-                    <button class="icon-btn"><span class="icon">🗑️</span></button>
-                `;
+    if (!busNumber || !date || !time) {
+        alert("Please fill in all fields.");
+        return;
+    }
 
-                // Append the new task to the ul
-                ul.appendChild(newLi);
+    alert(`Booking confirmed for Bus ${busNumber} on ${date} at ${time}.`);
+}
 
-                // Add functionality to the new trash icon to delete the task
-                const trashIcon = newLi.querySelector('.icon-btn');
-                trashIcon.addEventListener('click', () => {
-                    newLi.remove(); // Remove the list item when trash icon is clicked
-                });
-            }
-        });
-    });
-
-    // Add event listener to existing trash icons for initial tasks
-    const trashIcons = document.querySelectorAll('.icon-btn');
-
-    trashIcons.forEach((trashIcon) => {
-        trashIcon.addEventListener('click', (event) => {
-            const li = event.target.closest('li'); // Find the closest li to the trash icon clicked
-            li.remove(); // Remove the list item
-        });
-    });
+// Add event listener for the booking form
+document.addEventListener("DOMContentLoaded", () => {
+    const bookingForm = document.querySelector("form");
+    bookingForm.addEventListener("submit", handleBooking);
 });
+
+const routes = ["Route A", "Route B", "Route C"];
+
+function displayRoutes() {
+    const routeList = document.getElementById("routeList");
+    routes.forEach(route => {
+        const listItem = document.createElement("li");
+        listItem.textContent = route;
+        routeList.appendChild(listItem);
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", displayRoutes);
+function handlePayment(event) {
+    event.preventDefault();
+
+    const amount = document.getElementById("amount").value;
+    const cardNumber = document.getElementById("card").value;
+    const expiration = document.getElementById("expiration").value;
+    const cvv = document.getElementById("CVV").value;
+
+    if (!amount || !cardNumber || !expiration || !cvv) {
+        alert("Please fill in all payment details.");
+        return;
+    }
+
+    alert("Payment Successful!");
+}
+
+// Add event listener for the payment form
+document.addEventListener("DOMContentLoaded", () => {
+    const paymentForm = document.querySelector("form");
+    paymentForm.addEventListener("submit", handlePayment);
+});
+
+<script>
+    document.getElementById("booking-form").onsubmit = function(event) {
+        event.preventDefault(); // Prevents default form submission
+        window.location.href = "payment.html"; // Redirect to payment page
+    };
+</script>
