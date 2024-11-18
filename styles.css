@@ -111,6 +111,20 @@
             color: white;
             margin-bottom: 10px;
         }
+        ul {
+            list-style-type: none; /* Removes bullet points */
+            padding-left: 0; /* Removes any left padding */
+        }
+        
+        li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .task-text {
+            margin-left: 8px; /* Space between checkbox and task text */
+        }
+        
 
         .card ul {
             list-style-type: circle; /* Use bullets */
@@ -122,12 +136,19 @@
             position: relative;
             margin-bottom: 10px;
         }
+        input[type="checkbox"] {
+            width: 15px; /* Adjust size */
+            height: 20px; /* Adjust size */
+            accent-color: #a020f0; /* Change the checkmark color (modern browsers) */
+            margin-right: 20px; /* Add space between the checkbox and other elements */
+        }
+        
         
         .card ul li::before {
             content: '';
             position: absolute;
-            left: -10px; /* Adjust to align with bullet */
-            top: 76%;
+            left: 25px; /* Adjust to align with bullet */
+            top: 95%;
             transform: translateY(-50%);
             border-bottom: 2px solid white; /* The line */
             width: 90%; /* Adjust the width of the line */
@@ -191,7 +212,6 @@
             cursor: pointer;
             color: red;
         }
-        
         .list-name {
             cursor: pointer;
             outline: none; /* Remove outline when editing */
@@ -203,5 +223,17 @@
         .list-name:focus {
             background-color: #f0f0f0; /* Background color when editing */
         }
-
-    
+        .task-text {
+            flex: 1; /* Takes up remaining space */
+            margin-left: 20px; /* Space between line and text */
+            z-index: 3; /* Above the line */
+            color: white;
+            font-family: "Tan new york";
+        }
+        
+        .completed {
+            text-decoration: line-through;
+            color: #888; /* Optional: Change color to indicate it's completed */
+        }
+        
+        
