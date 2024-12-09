@@ -1,47 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('completion-modal');
-    const closeModalBtn = modal.querySelector('.close-modal-btn');
-    const modalContent = modal.querySelector('.modal-message');
-    const modalImage = modal.querySelector('img'); // Optional: Check if an image exists
-
-    // Function to show the modal
-    const showModal = (message) => {
-        // Set the dynamic message
-        modalContent.textContent = message;
-
-        // Show the modal
-        modal.style.display = 'flex';
-
-        // Optional: Start the scaling animation if the image exists
-        if (modalImage) {
-            let scaleFactor = 1;
-            const scaleImage = () => {
-                scaleFactor = scaleFactor === 1 ? 0.8 : 1;
-                modalImage.style.transform = `scale(${scaleFactor})`;
-            };
-
-            modalImage.style.transition = 'transform 0.5s ease';
-            const intervalId = setInterval(scaleImage, 500);
-
-            // Stop animation and hide modal after 4 seconds
-            setTimeout(() => {
-                clearInterval(intervalId);
-                modal.style.display = 'none';
-            }, 4000);
-        } else {
-            // Hide the modal without animation after 4 seconds
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 4000);
-        }
-    };
-
-    // Event listener for close button
-    closeModalBtn.addEventListener('click', () => {
-        modal.style.display = 'none'; // Manually close the modal
-    });
-
-    // Select all the plus icons (Add this part)
+    // Select all the plus icons
     const plusIcons = document.querySelectorAll('.plus-icon');
 
     // Add click event listener to each plus icon
