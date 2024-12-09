@@ -75,46 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add trash icon event listener
                 const trashIcon = newLi.querySelector('.icon-btn');
                 trashIcon.addEventListener('click', () => {
-                    newLi.remove();
-                });
-            }
-        });
-    });
-
-    // Add click event listener to each plus icon for adding tasks
-    plusIcons.forEach((plusIcon) => {
-        plusIcon.addEventListener('click', () => {
-            const card = plusIcon.closest('.card');
-            const ul = card.querySelector('ul');
-    
-            const taskText = prompt('Enter the new task:');
-    
-            if (taskText) {
-                const newLi = document.createElement('li');
-                newLi.classList.add('task-item');
-                newLi.innerHTML = `
-                    <input type="checkbox" class="task-checkbox">
-                    <span class="task-text">${taskText}</span>
-                    <button class="icon-btn"><span class="icon">🗑️</span></button>
-                `;
-    
-                ul.appendChild(newLi);
-    
-                // Add event listener for task checkbox
-                const checkbox = newLi.querySelector('.task-checkbox');
-                checkbox.addEventListener('change', (event) => {
-                    const taskText = event.target.nextElementSibling;
-                    taskText.classList.toggle('completed', event.target.checked);
-    
-                    if (event.target.checked) {
-                        showModal(`Congratulations! Task completed: "${taskText.textContent}"`);
-                    }
-                });
-    
-                // Add event listener for trash icon to delete tasks
-                const trashIcon = newLi.querySelector('.icon-btn');
-                trashIcon.addEventListener('click', () => {
-                    newLi.remove();
+                    newLi.remove(); // Removes the task item
                 });
             }
         });
