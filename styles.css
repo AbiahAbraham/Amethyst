@@ -57,12 +57,16 @@
         
         /* Modify team-updates specifically */
         .team-updates {
-            grid-column: span 1; /* Now it takes up the same space as the other cards */
+            grid-column: span 1; /* Keeps the same grid layout */
             color: #b08c4f;
             font-weight: bold;
             text-align: center;
-            margin-top: auto; /* This will push it towards the bottom of the grid cell */
+            margin-top: auto;
+            margin-left: -200px; /* Moves it slightly left */
+            display: flex;
+            justify-content: flex-end;
         }
+        
     
 
         .team-updates img {
