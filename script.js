@@ -1,4 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('completion-modal');
+    const closeModalBtn = modal.querySelector('.close-modal-btn');
+    const modalContent = modal.querySelector('.modal-message');
+    const modalImage = modal.querySelector('img'); // Optional: Check if an image exists
+
+    // Function to show the modal
+    const showModal = (message) => {
+        // Set the dynamic message
+        modalContent.textContent = message;
+
+        // Show the modal
+        modal.style.display = 'flex';
+
+        // Optional: Start the scaling animation if the image exists
+        if (modalImage) {
+            let scaleFactor = 1;
+            const scaleImage = () => {
+                scaleFactor = scaleFactor === 1 ? 0.8 : 1;
+                modalImage.style.transform = `scale(${scaleFactor})`;
+            };
+
+            modalImage.style.transition = 'transform 0.5s ease';
+            const intervalId = setInterval(scaleImage, 500);
+
+            // Stop animation and hide modal after 4 seconds
+            setTimeout(() => {
+                clearInterval(intervalId);
+                modal.style.display = 'none';
+            }, 4000);
+        } else {
+            // Hide the modal without animation after 4 seconds
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 4000);
+        }
+    };
+
+    // Event listener for close button
+    closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none'; // Manually close the modal
+    });
+
     // Select all the plus icons
     const plusIcons = document.querySelectorAll('.plus-icon');
 
@@ -29,12 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 checkbox.addEventListener('change', (event) => {
                     const taskText = event.target.nextElementSibling;
                     taskText.classList.toggle('completed', event.target.checked);
+
+                    if (event.target.checked) {
+                        showModal('Task completed!'); // Show modal when task is checked
+                    }
                 });
 
                 // Add functionality to the new trash icon to delete the task
                 const trashIcon = newLi.querySelector('.icon-btn');
                 trashIcon.addEventListener('click', () => {
                     newLi.remove(); // Remove the list item when trash icon is clicked
+                    showModal('Task deleted!'); // Show modal after task is deleted
                 });
             }
         });
@@ -46,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         trashIcon.addEventListener('click', (event) => {
             const li = event.target.closest('li'); // Find the closest li to the trash icon clicked
             li.remove(); // Remove the list item
+            showModal('Task deleted!'); // Show modal after task is deleted
         });
     });
 
@@ -55,6 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener('change', (event) => {
             const taskText = event.target.nextElementSibling; // Select the task text element
             taskText.classList.toggle('completed', event.target.checked); // Toggle 'completed' class
+
+            if (event.target.checked) {
+                showModal(`Congratulations! Task completed: "${taskText.textContent}"`);
+            }
         });
     });
 
