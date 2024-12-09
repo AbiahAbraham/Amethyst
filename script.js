@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = modal.querySelector('.close-modal-btn');
     const modalContent = modal.querySelector('.modal-message');
     const modalImage = modal.querySelector('img'); // Optional: Check if an image exists
-    
+
     // Function to show the modal
     const showModal = (message) => {
         // Set the dynamic message
         modalContent.textContent = message;
-    
+
         // Show the modal
         modal.style.display = 'flex';
-    
+
         // Optional: Start the scaling animation if the image exists
         if (modalImage) {
             let scaleFactor = 1;
@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 scaleFactor = scaleFactor === 1 ? 0.8 : 1;
                 modalImage.style.transform = `scale(${scaleFactor})`;
             };
-    
+
             modalImage.style.transition = 'transform 0.5s ease';
             const intervalId = setInterval(scaleImage, 500);
-    
+
             // Stop animation and hide modal after 4 seconds
             setTimeout(() => {
                 clearInterval(intervalId);
@@ -41,7 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'none'; // Manually close the modal
     });
 
-    // Select all the plus icons
+    // Select all the plus icons (Add this part)
+    const plusIcons = document.querySelectorAll('.plus-icon');
+
+    // Add click event listener to each plus icon
     plusIcons.forEach((plusIcon) => {
         plusIcon.addEventListener('click', () => {
             const card = plusIcon.closest('.card'); // Get the card where the plus icon was clicked
